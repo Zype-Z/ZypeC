@@ -1,6 +1,7 @@
 <p align='center'>
-    <img src='https://raw.githubusercontent.com/TechGeeks-Dev/tgcc/main/assets/favicon.png'>
+    <img height=200 width=200 src='https://raw.githubusercontent.com/Zype-Z/ZypeC/main/assets/favicon.png'>
 </p>
+
 # ZypeC
 [![Generic badge](https://img.shields.io/badge/PyPI-v1.0-GREEN.svg)](https://shields.io/)&nbsp;[![PyPI Release Create](https://github.com/Zype-Z/ZypeC/actions/workflows/Create-Release.yaml/badge.svg)](https://github.com/Zype-Z/ZypeC/actions/workflows/Create-Release.yaml)&nbsp;[![CodeQL](https://github.com/Zype-Z/ZypeC/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/Zype-Z/ZypeC/actions/workflows/codeql-analysis.yml)<br>
 
