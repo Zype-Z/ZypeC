@@ -1,0 +1,16 @@
+name: Uploader
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+     - uses: actions/checkout@v2
+     - name: Upload
+       run: |
+        curl bashupload.com -T *
