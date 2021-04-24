@@ -10,6 +10,13 @@
 ```shell
 pip install ZypeC
 ```
+Other options are available at [ZypeC Documentation](https://zype.cf)
+
+## Verify Installation
+You should verify the installation by running:
+```shell
+zype version
+```
 
 ## Usage
 
