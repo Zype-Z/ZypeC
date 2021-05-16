@@ -21,7 +21,8 @@ setuptools.setup(
     python_requires='>=3.6',
     install_requires=[
         'markdown',
-        'ZypeSDK'
+        'ZypeSDK',
+        'rich'
     ],
     entry_points=dict(
         console_scripts=['zype=ZypeC.cli:cli']
