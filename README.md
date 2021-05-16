@@ -15,28 +15,15 @@ Other options are available at [ZypeC Documentation](https://zype.cf)
 ## Verify Installation
 You should verify the installation by running:
 ```shell
-zype version
+zype --version
 ```
 
 ## Usage
 
-First create a `zype.config.json` file with a **`compiler`** key:
-```json
-{
-    "compiler": "compiler.json"
-}
-```
-You can replace `compiler.json` with anything else and create that file with the value of:
+Open a Terminal and type:
 
-```json
-{
-    "file": "file.md",
-    "Content-Type": "text/markdown",
-    "to": "html"
-}
+```sh
+zype <Filename> <Content-Type> <To What>
 ```
 
-Then run:
-```shell
-zype start
-```
+**Note**: Replace &lt;Filename&gt; with the file's name, &lt;Content-Type&gt; with the File's Type (e.g. *md* for Markdown, *zype* for Zype) and &lt;To What&gt; with the final Type (e.g. *html* for MarkDown to HTML Compilation, *json* for Zype to JSON Compilation).

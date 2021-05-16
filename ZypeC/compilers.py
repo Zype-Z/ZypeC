@@ -2,55 +2,47 @@ import markdown
 import os
 import json
 import errno
-from glob import glob
+import ZypeSDK as z
+import sys
+
 
 def compile():
-    if os.path.isfile('zype.config.json'):
-        with open('zype.config.json', 'r') as zype:
-            data = json.load(zype)
-            compiler = data['compiler']
-            if os.path.isfile(compiler):
-                with open(compiler, 'r') as compiler:
-                    compiler = json.load(compiler)
-                    file = compiler['file']
-                    Content_Type = compiler['Content-Type']
-                    toFile = compiler['to']
-                    if Content_Type == 'text/markdown':
-                        if toFile == 'html':
-                            if os.path.isfile(file):
-                                with open(file, 'r') as md:
-                                    text = md.read()
-                                    html = markdown.markdown(text)
-                                    html = f"""<!doctype html>
-<html>
-<head>
-<title>Zype Generated HTML</title>
+    file = sys.argv[1]
+    cType = sys.argv[2]
+    to = sys.argv[3]
+    if cType == 'md' and to == 'html':
+        if os.path.isfile(file):
+            with open(file, 'r') as md:
+                text = md.read()
+                html = markdown.markdown(text)
+                html = f"""<!DOCTYPE html>
+    <html>
+    <head>
+    <title>ZypeC Generated HTML</title>
 
-    <meta charset="utf-8" />
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />   
-    <link href="https://raw.githubusercontent.com/Zype-Z/ZypeC/main/assets/favicon.png" rel="icon">
-</head>
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link href="https://raw.githubusercontent.com/Zype-Z/ZypeC/main/assets/favicon.png" rel="icon">
+    </head>
 
-<body>
-{html}
-</body>
-</html>"""
-                                hfile = file.replace('.md', '.html')
-                                with open(f'{hfile}', 'w') as fh:
-                                    return fh.write(html)
-                            else:
-                                raise FileNotFoundError(
-                                        errno.ENOENT, os.strerror(errno.ENOENT), file)
-                        else:
-                            raise ValueError(
-                                    f"Zype: Can't Compile {file} to {file.replace('.md', '.'+toFile)}")
-                    else:
-                        raise ValueError(
-                                f"Zype: {Content_Type} is not supported")
-            else:
-                raise FileNotFoundError(
-                        errno.ENOENT, os.strerror(errno.ENOENT), compiler)
+    <body>
+    {html}
+    </body>
+    </html>"""
+                hfile = file.replace('.md', '.html')
+                with open(f'{hfile}', 'w') as fh:
+                    fh.write(html)
+        else:
+            raise FileNotFoundError(
+                errno.ENOENT, os.strerror(errno.ENOENT), file)
+    elif cType == 'zype' and to == 'json':
+        ZypeFile = z.Open(file)
+        JSONFile = file.replace('.zype', '.json')
+        with open(f'{JSONFile}', 'w') as JSON:
+            JSON.write(ZypeFile)
     else:
-        raise FileNotFoundError(
-                errno.ENOENT, os.strerror(errno.ENOENT), 'Zype.json')
+        raise ValueError(f"Zype: {cType} is not supported")
+
+if __name__ == "__main__":
+    print("Can't be used without CLI.")
